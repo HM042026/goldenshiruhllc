@@ -2,16 +2,58 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Settings, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Settings, ArrowRight, BarChart3, Search, Layout, Camera, Megaphone } from "lucide-react";
 import Link from "next/link";
 
 const servicesDropdown = [
   {
-    label: "Amazon Account Management",
+    label: "Account Management",
     href: "/services/amazon-account-management",
-    description: "Full-spectrum account scaling — SEO, PPC, FBA & compliance.",
+    description: "Full-spectrum Amazon account scaling & operations.",
     icon: Settings,
     badge: "Flagship",
+  },
+  {
+    label: "PPC Management",
+    href: "/services/amazon-ppc-management",
+    description: "Data-driven advertising for maximum ROAS.",
+    icon: BarChart3,
+  },
+  {
+    label: "Listing Optimization",
+    href: "/services/listing-optimization",
+    description: "Rank higher with SEO-optimized listings.",
+    icon: Search,
+  },
+  {
+    label: "A+ / EBC Content",
+    href: "/services/a-plus-ebc-content",
+    description: "Premium visual storytelling for your listings.",
+    icon: Layout,
+  },
+  {
+    label: "Product Photography",
+    href: "/services/product-photography",
+    description: "High-impact professional product imagery.",
+    icon: Camera,
+  },
+  {
+    label: "Brand Store Design",
+    href: "/services/brand-store-design",
+    description: "Custom digital storefronts on Amazon.",
+    icon: Layout,
+  },
+  {
+    label: "New Product Launch",
+    href: "/services/new-product-launch",
+    description: "Strategic market entry for new products.",
+    icon: Megaphone,
+  },
+  {
+    label: "E-Commerce Store",
+    href: "/services/e-commerce-store",
+    description: "Independent Shopify & WooCommerce builds.",
+    icon: Layout,
   },
 ];
 
@@ -263,7 +305,7 @@ export default function Navbar() {
               <div
                 className={`overflow-hidden transition-all duration-500 ${
                   isMobileServicesOpen
-                    ? "max-h-[500px] opacity-100"
+                    ? "max-h-[800px] opacity-100"
                     : "max-h-0 opacity-0"
                 }`}
               >

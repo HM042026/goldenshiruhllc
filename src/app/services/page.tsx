@@ -2,6 +2,7 @@
 
 import HeroSection from "@/components/sections/herosection";
 import ServicePillars from "@/components/sections/service-pillars";
+import ServicesSection from "@/components/sections/services";
 import WhyUsSection from "@/components/sections/whyus";
 import CtaSection from "@/components/sections/cta";
 import Footer from "@/components/layout/footer";
@@ -20,6 +21,7 @@ export default function ServicesPage() {
       <div id="pillars">
         <ServicePillars />
       </div>
+      <ServicesSection />
       <WhyUsSection />
       <CtaSection />
       <Footer />

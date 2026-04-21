@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, Layout, Megaphone, Search, Settings, Truck } from "lucide-react";
+import { BarChart3, Camera, Layout, Megaphone, Search, Settings, Truck } from "lucide-react";
 
 interface Service {
   icon: React.ReactNode;
@@ -11,32 +11,60 @@ interface Service {
 
 const services: Service[] = [
   {
-    tag: "Launch & Strategy",
-    icon: <Layout className="w-6 h-6" />,
-    title: "Marketplace Onboarding",
-    description: "Full account setup, competitive gap analysis, and global marketplace strategy. We architect your initial footprint for long-term category dominance.",
-    href: "/services",
-  },
-  {
-    tag: "Growth Optimization",
-    icon: <Search className="w-6 h-6" />,
-    title: "Algorithm-First SEO",
-    description: "Proprietary keyword indexing and A+ Content optimization. We ensure your listings are ranking where the high-intent shoppers are actually searching.",
-    href: "/services",
-  },
-  {
-    tag: "Performance Marketing",
-    icon: <Megaphone className="w-6 h-6" />,
-    title: "High-ROAS PPC Management",
-    description: "Sophisticated Amazon Advertising management. We lower ACoS and drive aggressive revenue growth through data-backed bidding and placement strategy.",
-    href: "/services",
-  },
-  {
-    tag: "Operational Health",
+    tag: "Core Service",
     icon: <Settings className="w-6 h-6" />,
-    title: "Full Account Management",
-    description: "Daily FBA logistics, inventory forecasting, case management, and 100% TOS compliance monitoring to protect your brand's integrity.",
-    href: "/services",
+    title: "Amazon Account Management",
+    description: "End-to-end oversight of your Amazon business focused on performance, compliance, and growth.",
+    href: "/services/amazon-account-management",
+  },
+  {
+    tag: "High Value",
+    icon: <BarChart3 className="w-6 h-6" />,
+    title: "Amazon PPC Management",
+    description: "Performance-driven advertising optimization to reduce ACOS and scale profitable products.",
+    href: "/services/amazon-ppc-management",
+  },
+  {
+    tag: "Conversion",
+    icon: <Search className="w-6 h-6" />,
+    title: "Listing Optimization",
+    description: "Search-optimized and conversion-focused listing restructuring for higher organic rankings.",
+    href: "/services/listing-optimization",
+  },
+  {
+    tag: "Creative",
+    icon: <Layout className="w-6 h-6" />,
+    title: "A+ / EBC Content",
+    description: "Visually engaging and conversion-driven A+ content and Brand Storytelling.",
+    href: "/services/a-plus-ebc-content",
+  },
+  {
+    tag: "Visuals",
+    icon: <Camera className="w-6 h-6" />,
+    title: "Product Photography",
+    description: "Professional high-quality product imagery designed for marketplace impact.",
+    href: "/services/product-photography",
+  },
+  {
+    tag: "Branding",
+    icon: <Layout className="w-6 h-6" />,
+    title: "Brand Store Design",
+    description: "Custom digital storefronts that reflect your brand identity and improve discovery.",
+    href: "/services/brand-store-design",
+  },
+  {
+    tag: "Launch",
+    icon: <Megaphone className="w-6 h-6" />,
+    title: "New Product Launch",
+    description: "Strategic market entry plans focused on visibility, ranking velocity, and early sales.",
+    href: "/services/new-product-launch",
+  },
+  {
+    tag: "Expansion",
+    icon: <Layout className="w-6 h-6" />,
+    title: "E-Commerce Store",
+    description: "Build and scale independent e-commerce stores to own your customer data and margins.",
+    href: "/services/e-commerce-store",
   },
 ];
 
@@ -88,11 +116,11 @@ export default function ServicesSection() {
               Unified Growth Strategy
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 font-heading leading-tight">
-              One Comprehensive Solution: <span className="text-brand">Amazon Account Management</span>
+              Our Full-Service <span className="text-brand">Scaling Ecosystem</span>
             </h2>
           </div>
           <p className="text-gray-500 max-w-sm text-sm md:text-base leading-relaxed">
-            Stop managing disjointed freelancers. We execute a 360° operational flywheel that scales your revenue while protecting your account health.
+            From elite account management to performance-driven PPC and creative optimization, we provide a unified 360° flywheel to scale your Amazon brand.
           </p>
         </div>
 
