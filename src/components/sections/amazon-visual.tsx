@@ -41,7 +41,14 @@ export function AmazonVisual() {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      const points: { x: number; y: number; z: number; char: string; color: string; scale: number }[] = [];
+      const points: {
+        x: number;
+        y: number;
+        z: number;
+        char: string;
+        color: string;
+        scale: number;
+      }[] = [];
 
       // Generate a dynamic "Growth Matrix"
       // We'll create a layered sphere effect representing account health and marketplace connectivity
@@ -63,7 +70,7 @@ export function AmazonVisual() {
 
           const depth = (finalZ + 1) / 2;
           const symbolIndex = Math.floor(depth * (symbols.length - 1));
-          
+
           // Emerald Green with hints of Amazon Amber/Orange (#FF9900)
           let color;
           if (finalZ > 0.8) {
@@ -80,7 +87,7 @@ export function AmazonVisual() {
             z: finalZ,
             char: symbols[symbolIndex],
             color,
-            scale: 0.7 + (finalZ + 1) * 0.5
+            scale: 0.7 + (finalZ + 1) * 0.5,
           });
         }
       }
@@ -106,7 +113,7 @@ export function AmazonVisual() {
         ctx.fillStyle = point.color;
         ctx.font = `bold ${10 * point.scale}px sans-serif`;
         ctx.fillText(point.char, point.x, point.y);
-        
+
         // Add a subtle glow to front-most items
         if (point.z > 0.9) {
           ctx.shadowBlur = 10;

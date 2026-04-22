@@ -43,17 +43,17 @@ const testimonials: Testimonial[] = [
 
 function TestimonialCard({ quote, name, role, result, initials }: Testimonial) {
   return (
-    <div className="group relative flex flex-col rounded-2xl p-px overflow-hidden bg-gradient-to-br from-white/10 via-white/5 to-transparent hover:from-brand/30 hover:via-brand/10 hover:to-transparent transition-all duration-500">
-      <div className="relative flex flex-col flex-1 rounded-[15px] backdrop-blur-md bg-white/5 p-7 transition-all duration-300">
+    <div className="group relative flex flex-col rounded-[2.5rem] p-px overflow-hidden bg-gradient-to-br from-white/10 via-white/5 to-transparent hover:via-brand/20 hover:shadow-2xl transition-all duration-700">
+      <div className="relative flex flex-col flex-1 rounded-[2.4rem] backdrop-blur-3xl bg-gray-900/50 p-8 sm:p-10 transition-all duration-500">
         {/* Stars */}
-        <div className="flex gap-x-0.5 mb-5">
+        <div className="flex gap-x-1 mb-8">
           {Array.from({ length: 5 }).map((_, i) => (
             <svg
               key={i}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-4 h-4 text-amber-400"
+              className="w-4 h-4 text-brand shadow-brand/20"
             >
               <path
                 fillRule="evenodd"
@@ -64,20 +64,23 @@ function TestimonialCard({ quote, name, role, result, initials }: Testimonial) {
           ))}
         </div>
 
-        <blockquote className="text-sm md:text-base text-gray-300 leading-relaxed flex-1">
+        <blockquote 
+          className="text-white leading-[1.4] flex-1 font-medium italic"
+          style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.25rem)" }}
+        >
           &ldquo;{quote}&rdquo;
         </blockquote>
 
         {/* Author row */}
-        <div className="flex items-center gap-x-3 mt-6 pt-6 border-t border-white/8">
-          <div className="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow-lg shadow-brand/30">
+        <div className="flex items-center gap-x-4 mt-10 pt-8 border-t border-white/5">
+          <div className="w-12 h-12 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand-light text-base font-black flex-shrink-0 shadow-inner group-hover:bg-brand group-hover:text-white transition-all duration-500">
             {initials}
           </div>
-          <div>
-            <p className="text-sm font-bold text-white">{name}</p>
-            <p className="text-xs text-gray-400">{role}</p>
+          <div className="flex-grow">
+            <p className="text-sm sm:text-base font-bold text-white tracking-tight">{name}</p>
+            <p className="text-[10px] sm:text-xs text-white/30 font-medium uppercase tracking-widest">{role}</p>
           </div>
-          <span className="ml-auto text-xs font-bold text-brand-light bg-brand/15 border border-brand/25 px-3 py-1 rounded-full whitespace-nowrap">
+          <span className="hidden sm:block text-[9px] font-bold text-brand-light bg-brand/10 border border-brand/20 px-3 py-1 rounded-full uppercase tracking-widest">
             {result}
           </span>
         </div>
@@ -88,32 +91,46 @@ function TestimonialCard({ quote, name, role, result, initials }: Testimonial) {
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-24 md:py-32 bg-gray-950 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(0,103,79,0.10),transparent)]" />
-      <div
-        className="absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <section className="relative py-20 sm:py-32 lg:py-40 bg-[#0a0f1a] overflow-hidden">
+      {/* Architectural Grid Overlay */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.03]">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={`h-${i}`}
+            className="absolute h-px bg-white w-full"
+            style={{ top: `${10 * (i + 1)}%` }}
+          />
+        ))}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={`v-${i}`}
+            className="absolute w-px bg-white h-full"
+            style={{ left: `${8.33 * (i + 1)}%` }}
+          />
+        ))}
+      </div>
 
-      <div className="relative z-10 mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <span className="inline-block backdrop-blur-sm bg-brand/10 border border-brand/25 text-brand-light text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(0,103,79,0.35),transparent)] opacity-70" />
+
+      <div className="relative z-10 mx-auto lg:max-w-7xl w-full px-6 sm:px-10 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24 space-y-6">
+          <div className="inline-flex items-center gap-x-3 text-brand text-[9px] sm:text-[10px] font-bold tracking-[0.4em] uppercase mx-auto">
+            <span className="w-8 sm:w-12 h-px bg-brand/30" />
             Client Success Stories
-          </span>
-          <h2 className="text-2xl md:text-4xl font-bold text-white">
-            Real Results From Real Amazon Sellers
+            <span className="w-8 sm:w-12 h-px bg-brand/30" />
+          </div>
+          <h2 
+            className="text-white font-heading tracking-tight"
+            style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)", lineHeight: "1.1", fontWeight: 600 }}
+          >
+            Real Results From <span className="italic text-brand">Real Sellers</span>
           </h2>
-          <p className="text-sm md:text-base text-gray-400">
-            Don&#39;t take our word for it. Read what our clients say about
-            partnering with Goldenshiruhllc to grow their Amazon business.
+          <p className="text-white/40 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+            Read what our clients say about partnering with Goldenshiruhllc to scale their Amazon presence to new heights.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {testimonials.map((t) => (
             <TestimonialCard key={t.name} {...t} />
           ))}
