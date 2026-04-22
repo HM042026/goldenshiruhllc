@@ -97,9 +97,9 @@ export default function ContactForm() {
             </div>
 
             {/* Verification Badge */}
-            <div className="p-8 rounded-[2.5rem] bg-gray-50 border border-gray-100 flex items-start gap-x-5 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center flex-shrink-0">
+            <div className="p-8 rounded-[2.5rem] bg-gray-50 border border-gray-100 flex items-start gap-x-5 relative overflow-hidden group shadow-sm">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="w-12 h-12 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center flex-shrink-0">
                 <ShieldCheck className="w-6 h-6 text-brand" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-gray-600 leading-relaxed relative z-10">
@@ -206,7 +206,7 @@ export default function ContactForm() {
 
               <button
                 disabled={loading}
-                className="w-full h-14 sm:h-16 rounded-full bg-brand hover:bg-brand-hover text-white font-bold text-base sm:text-lg flex items-center justify-center gap-x-3 transition-all duration-300 shadow-2xl shadow-brand/20 disabled:opacity-70 group active:scale-[0.98]"
+                className="w-full h-14 sm:h-16 rounded-full bg-brand hover:bg-brand-hover text-white font-bold text-base sm:text-lg flex items-center justify-center gap-x-3 transition-all duration-300 shadow-2xl shadow-brand/40 disabled:opacity-70 group active:scale-[0.98]"
               >
                 {loading ? (
                   <span className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

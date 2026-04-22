@@ -155,15 +155,18 @@ export default function ServicesSection() {
         </div>
 
         {/* Bottom CTA bar */}
-        <div className="mt-12 sm:mt-20 p-6 sm:p-10 rounded-[2.5rem] bg-gray-900 text-white flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden relative border border-white/5">
-          <div className="absolute inset-0 bg-brand/5 blur-3xl rounded-full translate-x-1/2 pointer-events-none" />
+        <div className="mt-12 sm:mt-20 p-6 sm:p-10 rounded-[2.5rem] bg-[#0a0f1a] text-gray-400 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden relative border border-white/5 shadow-2xl">
+          {/* Intense Background Glows */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/20 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none opacity-60" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand/10 blur-[100px] rounded-full -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+
           <div className="relative z-10 max-w-xl">
-            <h4 className="text-lg sm:text-2xl font-semibold font-heading mb-2">Not sure where to start?</h4>
-            <p className="text-white/50 text-xs sm:text-sm leading-relaxed">Get a localized competitive gap analysis for your category and identify immediate revenue opportunities.</p>
+            <h4 className="text-lg sm:text-2xl font-bold font-heading mb-2 text-white">Not sure where to start?</h4>
+            <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">Get a localized competitive gap analysis for your category and identify immediate revenue opportunities.</p>
           </div>
           <Link 
-            href="#contact" 
-            className="relative z-10 h-11 sm:h-13 px-8 sm:px-10 rounded-full bg-brand hover:bg-brand-hover transition-all duration-300 flex items-center text-xs sm:text-sm font-semibold shadow-xl shadow-brand/20 active:scale-95 whitespace-nowrap"
+            href="/contact" 
+            className="relative z-10 h-11 sm:h-14 px-8 sm:px-10 rounded-full bg-brand hover:bg-brand-hover transition-all duration-300 flex items-center text-xs sm:text-sm font-semibold shadow-2xl shadow-brand/20 active:scale-95 whitespace-nowrap text-white"
           >
             Claim Free Audit
           </Link>

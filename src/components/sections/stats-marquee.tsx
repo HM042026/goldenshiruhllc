@@ -11,6 +11,24 @@ export function StatsMarquee() {
 
   return (
     <section className="py-6 sm:py-8 lg:py-10 border-b border-gray-100 overflow-hidden w-full relative bg-white">
+      {/* Architectural Grid Overlay */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.03]">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={`h-${i}`}
+            className="absolute h-px bg-brand w-full"
+            style={{ top: `${20 * (i + 1)}%` }}
+          />
+        ))}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={`v-${i}`}
+            className="absolute w-px bg-brand h-full"
+            style={{ left: `${8.33 * (i + 1)}%` }}
+          />
+        ))}
+      </div>
+
       {/* Stats marquee */}
       <div
         className={`w-full transition-all duration-700 delay-100 ${

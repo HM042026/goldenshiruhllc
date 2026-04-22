@@ -45,7 +45,10 @@ export default function WhoWeAre() {
           <div className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
             <div className="space-y-4">
               <h2 className="text-brand font-bold uppercase tracking-widest text-sm">Who We Are</h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 font-heading leading-tight">
+              <h3 
+                className="font-black text-gray-900 font-heading leading-tight"
+                style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
+              >
                 Architects of the <br />
                 <span className="text-brand italic font-black">Amazon Future.</span>
               </h3>

@@ -32,8 +32,8 @@ const defaults: Required<HeroSectionProps> = {
   headingLine2: "The Revenue Ceiling",
   description:
     "We turn stagnant Amazon listings into market leaders. Using proprietary algorithm research, data-backed PPC, and elite operational strategy, we architect the future of your brand's marketplace dominance.",
-  primaryCta: { label: "Get Your Free Audit", href: "#contact" },
-  secondaryCta: { label: "Our Growth Ecosystem", href: "#services" },
+  primaryCta: { label: "Get Your Free Audit", href: "/contact" },
+  secondaryCta: { label: "Our Growth Ecosystem", href: "/services" },
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────

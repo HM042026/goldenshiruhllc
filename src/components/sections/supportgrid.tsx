@@ -26,7 +26,7 @@ const supportChannels = [
     title: "Booking Desk",
     detail: "Available 24/7",
     action: "Schedule Meeting",
-    href: "#", // Placeholder for Calendly
+    href: "/contact", // Link to contact page instead of broken placeholder
     color: "bg-amber-50 text-amber-600",
   },
 ];
@@ -62,7 +62,12 @@ export default function SupportGrid() {
           <div className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
             <div className="space-y-4">
               <h2 className="text-brand font-bold uppercase tracking-widest text-sm">Direct Access</h2>
-              <h3 className="text-3xl font-black text-gray-900 font-heading">Global Support Network.</h3>
+              <h3 
+                className="font-black text-gray-900 font-heading leading-tight"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
+                Global Support Network.
+              </h3>
               <p className="text-gray-500 max-w-md">
                 Our team is strategically distributed to ensure your brand receives 24/7 marketplace monitoring and support.
               </p>
@@ -97,7 +102,12 @@ export default function SupportGrid() {
           <div className={`space-y-8 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="space-y-4">
               <h2 className="text-brand font-bold uppercase tracking-widest text-sm">Instant Intelligence</h2>
-              <h3 className="text-3xl font-black text-gray-900 font-heading">Common Queries.</h3>
+              <h3 
+                className="font-black text-gray-900 font-heading leading-tight"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
+                Common Queries.
+              </h3>
             </div>
 
             <div className="space-y-6">

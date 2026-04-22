@@ -50,7 +50,7 @@ export default function CtaSection() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link
-                href="mailto:support@goldenshiruhllc.com"
+                href="/contact"
                 className="h-12 sm:h-14 px-10 rounded-full bg-brand hover:bg-brand-hover text-white font-semibold text-sm sm:text-base flex items-center justify-center transition-all duration-300 shadow-xl shadow-brand/20 w-full sm:w-auto group active:scale-95"
               >
                 Get Your Free Audit

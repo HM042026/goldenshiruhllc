@@ -2,7 +2,18 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Settings, ArrowRight, BarChart3, Search, Layout, Camera, Megaphone } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Settings,
+  ArrowRight,
+  BarChart3,
+  Search,
+  Layout,
+  Camera,
+  Megaphone,
+} from "lucide-react";
 import Link from "next/link";
 
 const servicesDropdown = [
@@ -161,18 +172,22 @@ export default function Navbar() {
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <button
-                  onClick={() => setIsServicesOpen((v) => !v)}
-                  className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-300 relative group"
+                <Link
+                  href="/services"
+                  className="text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-300 relative group"
                 >
-                  Services
-                  <ChevronDown
-                    size={14}
-                    className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-brand" : ""}`}
-                  />
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full" />
-                </button>
-
+                  <button
+                    onClick={() => setIsServicesOpen((v) => !v)}
+                    className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-300 relative group"
+                  >
+                    Services
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-brand" : ""}`}
+                    />
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand transition-all duration-300 group-hover:w-full" />
+                  </button>
+                </Link>
                 {/* Dropdown Panel */}
                 <div
                   className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ${
@@ -287,20 +302,22 @@ export default function Navbar() {
           <div className="flex-1 flex flex-col justify-center gap-2">
             {/* Services Accordion */}
             <div>
-              <button
-                onClick={() => setIsMobileServicesOpen((v) => !v)}
-                className={`flex items-center justify-between w-full text-4xl sm:text-5xl font-heading font-bold text-gray-900 hover:text-brand transition-all duration-500 py-3 ${
-                  isMobileMenuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: isMobileMenuOpen ? "0ms" : "0ms" }}
-              >
-                Services
-                <ChevronDown
-                  className={`w-8 h-8 transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-brand" : "text-gray-300"}`}
-                />
-              </button>
+              <Link href="/services">
+                <button
+                  onClick={() => setIsMobileServicesOpen((v) => !v)}
+                  className={`flex items-center justify-between w-full text-4xl sm:text-5xl font-heading font-bold text-gray-900 hover:text-brand transition-all duration-500 py-3 ${
+                    isMobileMenuOpen
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-4"
+                  }`}
+                  style={{ transitionDelay: isMobileMenuOpen ? "0ms" : "0ms" }}
+                >
+                  Services
+                  <ChevronDown
+                    className={`w-8 h-8 transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-brand" : "text-gray-300"}`}
+                  />
+                </button>
+              </Link>
               {/* Mobile submenu */}
               <div
                 className={`overflow-hidden transition-all duration-500 ${
