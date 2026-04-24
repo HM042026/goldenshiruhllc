@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Amazon PPC Management | High-ROAS Advertising Strategy | Goldenshiruhllc",
+  description: "Maximize your Amazon ad spend. We provide data-driven PPC management for Sponsored Products, Brands, and Display to lower ACOS and scale revenue.",
+  openGraph: {
+    title: "Expert Amazon PPC Management | Goldenshiruhllc",
+    description: "Scale your sales with precision-targeted Amazon advertising.",
+  }
+};
 
 export default function AmazonPPCManagementPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon PPC Management" 
+        description="Data-driven advertising strategies for Amazon Sponsored Products, Brands, and Display ads." 
+      />
       <HeroSection 
         eyebrow="High Value Service"
         headingLine1="Performance-Driven"

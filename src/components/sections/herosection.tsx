@@ -125,10 +125,10 @@ export default function HeroSection({
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
-              style={{ 
-                fontSize: "clamp(2.2rem, 8.5vw, 100px)", 
+              style={{
+                fontSize: "clamp(2.2rem, 7.5vw, 3.9rem)",
                 lineHeight: "1.12",
-                fontWeight: 600 
+                fontWeight: 600,
               }}
             >
               <span className="block text-gray-900 font-heading">

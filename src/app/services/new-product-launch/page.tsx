@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Strategic Amazon Product Launch | Ranking & Sales Velocity | Goldenshiruhllc",
+  description: "Enter the market with momentum. Our structured Amazon product launch strategy combines aggressive PPC, expert SEO, and market research to drive early rankings and sales.",
+  openGraph: {
+    title: "Expert Amazon Product Launch Services | Goldenshiruhllc",
+    description: "Architecting successful market entries for new Amazon brands.",
+  }
+};
 
 export default function NewProductLaunchPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon Product Launch Strategy" 
+        description="Structured ranking and sales velocity strategies for new product entries on the Amazon marketplace." 
+      />
       <HeroSection 
         eyebrow="Launch Service"
         headingLine1="Strategic Amazon"

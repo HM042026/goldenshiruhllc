@@ -33,6 +33,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { OrganizationSchema } from "@/components/seo/schema";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,7 +46,10 @@ export default function RootLayout({
       suppressHydrationWarning={true}
       className={`${montserrat.variable} ${hind.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
+        <OrganizationSchema />
+        {children}
+      </body>
     </html>
   );
 }

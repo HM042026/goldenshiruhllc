@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Amazon Listing Optimization | SEO & Copywriting Experts | Goldenshiruhllc",
+  description: "Rank higher and convert more. We combine elite Amazon SEO with conversion-focused copywriting to turn product browsers into buyers.",
+  openGraph: {
+    title: "Amazon SEO & Listing Optimization | Goldenshiruhllc",
+    description: "Data-backed keyword research and copywriting for Amazon dominance.",
+  }
+};
 
 export default function ListingOptimizationPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon Listing Optimization" 
+        description="SEO-optimized copywriting and keyword mapping for Amazon product listings." 
+      />
       <HeroSection 
         eyebrow="Conversion Service"
         headingLine1="Amazon Listing"

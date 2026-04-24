@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Amazon A+ Content & EBC Design | Conversion-Focused | Goldenshiruhllc",
+  description: "Boost trust and conversion with custom A+ Content and Enhanced Brand Content. Our designs tell your brand story and highlight key product benefits effectively.",
+  openGraph: {
+    title: "Amazon A+ Content & EBC Design | Goldenshiruhllc",
+    description: "Premium visual storytelling for your Amazon product listings.",
+  }
+};
 
 export default function APlusEbcContentPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon A+ Content & EBC Design" 
+        description="Custom design and layout for Amazon Enhanced Brand Content (EBC) to drive higher conversions." 
+      />
       <HeroSection 
         eyebrow="Creative Service"
         headingLine1="High-Converting"

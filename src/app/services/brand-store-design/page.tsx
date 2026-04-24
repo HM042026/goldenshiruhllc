@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Amazon Brand Store Design | Custom Storefronts | Goldenshiruhllc",
+  description: "Transform your Amazon presence into a high-converting digital storefront. We design premium Amazon Brand Stores that drive cross-selling and brand loyalty.",
+  openGraph: {
+    title: "Custom Amazon Brand Store Design | Goldenshiruhllc",
+    description: "Architecting elite digital destinations on the Amazon marketplace.",
+  }
+};
 
 export default function BrandStoreDesignPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon Brand Store Design" 
+        description="Custom UI/UX and visual design for Amazon Brand Stores to improve product discovery and brand credibility." 
+      />
       <HeroSection 
         eyebrow="Creative Service"
         headingLine1="Custom Amazon"

@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Professional Amazon Product Photography | High-Impact Visuals | Goldenshiruhllc",
+  description: "Stop the scroll with elite Amazon product photography. We create high-definition studio shots, lifestyle images, and infographics designed to maximize CTR and sales.",
+  openGraph: {
+    title: "Professional Amazon Product Photography | Goldenshiruhllc",
+    description: "High-quality visual assets for your Amazon listings.",
+  }
+};
 
 export default function ProductPhotographyPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon Product Photography" 
+        description="High-definition studio and lifestyle photography for Amazon product listings." 
+      />
       <HeroSection 
         eyebrow="Visual Service"
         headingLine1="Professional Amazon"

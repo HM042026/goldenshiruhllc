@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Full Amazon Account Management | FBA & Brand Growth | Goldenshiruhllc",
+  description: "Total ownership of your Amazon business. We handle daily operations, performance monitoring, and strategic scaling to drive category leadership.",
+  openGraph: {
+    title: "Amazon Account Management Services | Goldenshiruhllc",
+    description: "End-to-end management for Amazon brands seeking elite performance.",
+  }
+};
 
 export default function AmazonAccountManagementPage() {
   return (
     <main>
+      <ServiceSchema 
+        name="Amazon Account Management" 
+        description="End-to-end management of Amazon seller accounts, including FBA operations and brand growth strategy." 
+      />
       <HeroSection 
         eyebrow="Core Service"
         headingLine1="End-to-End Amazon"

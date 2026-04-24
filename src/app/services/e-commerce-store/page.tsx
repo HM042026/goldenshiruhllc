@@ -1,5 +1,4 @@
-"use client";
-
+import { Metadata } from "next";
 import HeroSection from "@/components/sections/herosection";
 import { 
   ServiceOverview, 
@@ -12,10 +11,24 @@ import {
 } from "@/components/sections/service-sections";
 import ContactForm from "@/components/sections/contact-form";
 import Footer from "@/components/layout/footer";
+import { ServiceSchema } from "@/components/seo/schema";
+
+export const metadata: Metadata = {
+  title: "Custom E-commerce Store Development | Shopify & WooCommerce | Goldenshiruhllc",
+  description: "Expand beyond Amazon. We build high-converting Shopify and WooCommerce stores that empower brand independence and increase DTC profit margins.",
+  openGraph: {
+    title: "E-commerce & DTC Store Development | Goldenshiruhllc",
+    description: "Building scalable digital storefronts for global brands.",
+  }
+};
 
 export default function EcommerceStorePage() {
   return (
     <main>
+      <ServiceSchema 
+        name="E-commerce Store Development" 
+        description="Custom design and development for Shopify and WooCommerce stores to build brand independence." 
+      />
       <HeroSection 
         eyebrow="Expansion Service"
         headingLine1="Build & Scale Your"
