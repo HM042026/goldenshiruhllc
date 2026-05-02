@@ -60,7 +60,7 @@ export function AmazonPortfolio() {
   const [activeIndex, setActiveIndex] = useState(2);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const totalSlides = 5;
+  const totalSlides = 6;
 
   const minSwipeDistance = 50;
 
@@ -130,11 +130,11 @@ export function AmazonPortfolio() {
     if (isLeftSwipe) {
       setActiveProductIndex((prev) => (prev + 1) % productImages.length);
     } else if (isRightSwipe) {
-      setActiveProductIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+      setActiveProductIndex(
+        (prev) => (prev - 1 + productImages.length) % productImages.length,
+      );
     }
   };
-
-
 
   return (
     <section className="w-full bg-[#0a0f1a] min-h-screen overflow-hidden relative font-sans">
@@ -168,17 +168,26 @@ export function AmazonPortfolio() {
         />
 
         <div
-          className="relative w-full max-w-6xl mx-auto h-[400px] sm:h-[500px] md:h-[600px] flex items-center justify-center perspective-[1200px]"
+          className="relative w-full max-w-6xl mx-auto h-[450px] sm:h-[550px] md:h-[650px] flex items-center justify-center perspective-[1200px]"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
           {/* Slides */}
           <div className="relative w-full h-full flex justify-center items-center">
-            {Array.from({ length: totalSlides }).map((_, i) => {
+            {[
+              "/images/amazonstoreimage.png",
+              "/images/amazonstoreimag2.png",
+              "/images/amazonstoreimag3.png",
+              "/images/amazonstoreimag4.png",
+              "/images/amazonstoreimag5.png",
+              "/images/amazonstoreimag6.png",
+              "/images/amazonstoreimage.png",
+            ].map((imgSrc, i) => {
+              const total = 7;
               let offset = i - activeIndex;
-              if (offset < -2) offset += totalSlides;
-              if (offset > 2) offset -= totalSlides;
+              if (offset < -Math.floor(total / 2)) offset += total;
+              if (offset > Math.floor(total / 2)) offset -= total;
 
               let translateX = 0;
               let scale = 1;
@@ -191,23 +200,23 @@ export function AmazonPortfolio() {
                 zIndex = 30;
                 opacity = 1;
               } else {
-                translateX = offset * 65;
+                translateX = offset * 60;
                 if (Math.abs(offset) === 1) {
-                  scale = 0.8;
+                  scale = 0.85;
                   zIndex = 20;
-                  opacity = 0.6;
+                  opacity = 0.7;
                 } else {
-                  translateX = offset * 95;
-                  scale = 0.6;
+                  translateX = offset * 70;
+                  scale = 0.7;
                   zIndex = 10;
-                  opacity = 0.3;
+                  opacity = 0.4;
                 }
               }
 
               return (
                 <div
                   key={i}
-                  className="absolute w-[220px] sm:w-[280px] md:w-[320px] h-[400px] sm:h-[550px] md:h-[650px] transition-all duration-700 ease-out rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#0F172A] border-[4px] sm:border-[8px] border-black/80 cursor-pointer"
+                  className="absolute w-[200px] sm:w-[260px] md:w-[300px] h-[400px] sm:h-[520px] md:h-[600px] transition-all duration-700 ease-out rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#0F172A] border-[8px] border-black/90 cursor-pointer group"
                   style={{
                     transform: `translateX(${translateX}%) scale(${scale})`,
                     zIndex: zIndex,
@@ -215,28 +224,20 @@ export function AmazonPortfolio() {
                   }}
                   onClick={() => setActiveIndex(i)}
                 >
-                  <div className="w-full h-full bg-slate-900 flex flex-col relative group">
-                    <div className="absolute inset-0 bg-gradient-to-b from-brand/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute top-0 inset-x-0 h-5 sm:h-7 flex justify-center z-20">
-                      <div className="w-1/4 h-full bg-black/80 rounded-b-2xl sm:rounded-b-3xl"></div>
+                  <div className="w-full h-full relative overflow-hidden bg-slate-900">
+                    <Image
+                      src={imgSrc}
+                      alt={`Amazon Storefront ${i + 1}`}
+                      fill
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 200px, 300px"
+                    />
+                    {/* Phone Notch/Speaker */}
+                    <div className="absolute top-0 inset-x-0 h-6 flex justify-center z-20">
+                      <div className="w-1/3 h-2 bg-black rounded-b-xl"></div>
                     </div>
-                    <div className="flex-1 p-3 sm:p-4 pt-8 sm:pt-10 flex flex-col gap-3 sm:gap-4">
-                      <div className="w-full h-32 sm:h-40 bg-slate-800 rounded-xl border border-white/5 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-brand/5 animate-pulse" />
-                      </div>
-                      <div className="w-3/4 h-5 sm:h-8 bg-slate-800 rounded-md border border-white/5"></div>
-                      <div className="w-full flex-1 bg-slate-800/50 rounded-xl border border-white/5 p-3">
-                        <div className="w-full h-full border border-dashed border-white/10 rounded-lg flex items-center justify-center">
-                          <span className="text-[9px] sm:text-[10px] text-slate-600 uppercase tracking-widest font-bold">
-                            Project 0{i + 1}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="w-full h-20 sm:h-32 bg-slate-800/80 rounded-xl grid grid-cols-2 gap-2 p-2 border border-white/5">
-                        <div className="bg-slate-700/50 rounded-lg"></div>
-                        <div className="bg-slate-700/50 rounded-lg"></div>
-                      </div>
-                    </div>
+                    {/* Glass Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-40 transition-opacity" />
                   </div>
                 </div>
               );
