@@ -182,7 +182,7 @@ export function AmazonPortfolio() {
               "/images/amazonstoreimag4.png",
               "/images/amazonstoreimag5.png",
               "/images/amazonstoreimag6.png",
-              "/images/amazonstoreimage.png",
+              "/images/amazonstoreimag3.png",
             ].map((imgSrc, i) => {
               const total = 7;
               let offset = i - activeIndex;
@@ -309,17 +309,43 @@ export function AmazonPortfolio() {
         />
 
         {/* Coded Mockup - Commented out as per request */}
-        {/* 
-        <div className="max-w-6xl mx-auto min-h-[400px] sm:h-[600px] flex items-center justify-center perspective-[3000px] overflow-hidden py-10">
+
+        <style>{`
+          @keyframes scrollDown {
+            0%, 5% { object-position: top; }
+            95%, 100% { object-position: bottom; }
+          }
+          @keyframes scrollUp {
+            0%, 5% { object-position: bottom; }
+            95%, 100% { object-position: top; }
+          }
+          .animate-scroll-down {
+            animation: scrollDown 20s ease-in-out infinite alternate;
+          }
+          .animate-scroll-up {
+            animation: scrollUp 20s ease-in-out infinite alternate;
+          }
+        `}</style>
+        <div className="w-full mx-auto min-h-[420px] sm:h-[600px] flex items-center justify-start sm:justify-center perspective-[3000px] overflow-x-auto overflow-y-hidden py-10 scrollbar-hide px-6 sm:px-0">
           <div
-            className="flex items-center justify-center w-full"
+            className="flex items-center justify-start sm:justify-center w-max sm:w-full gap-4 sm:gap-0 pr-8 sm:pr-0"
             style={{ transformStyle: "preserve-3d" }}
           >
-            {Array.from({ length: 5 }).map((_, i) => {
+            {[
+              "/images/aplusimg.jpg",
+              "/images/aplusimg1.jpg",
+              "/images/aplusimg2.jpg",
+              "/images/aplusimg3.jpg",
+              "/images/aplusimg4.jpg",
+              "/images/aplusimg5.jpg",
+            ].map((src, i) => {
               return (
                 <div
                   key={i}
-                  className="relative flex-shrink-0 w-[140px] sm:w-[220px] md:w-[240px] h-[300px] sm:h-[480px] md:h-[520px] rounded-[1.5rem] sm:rounded-[2rem] bg-[#0F172A] border-[4px] sm:border-[6px] border-black shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-4"
+                  className={cn(
+                    "relative flex-shrink-0 w-[180px] sm:w-[220px] md:w-[240px] h-[380px] sm:h-[480px] md:h-[520px] rounded-[1.5rem] sm:rounded-[2rem] bg-[#0F172A] border-[4px] sm:border-[6px] border-black shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-4 group/aplus",
+                    i !== 0 && "sm:ml-[10px]"
+                  )}
                   style={{
                     transform: `
                       rotateX(20deg) 
@@ -328,39 +354,34 @@ export function AmazonPortfolio() {
                       translateX(${i * 10}px)
                       translateY(${i * 10}px)
                     `,
-                    zIndex: 5 - i,
-                    marginLeft: i === 0 ? "0" : "10px",
+                    zIndex: 6 - i,
                   }}
                 >
-                  <div className="w-full h-full bg-slate-900 relative">
+                  <div className="w-full h-full bg-slate-900 relative overflow-hidden">
+                    <Image
+                      src={src}
+                      alt={`A+ Content Showcase ${i + 1}`}
+                      fill
+                      className={cn(
+                        "object-cover",
+                        i % 2 === 0 ? "animate-scroll-down" : "animate-scroll-up"
+                      )}
+                      sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 240px"
+                    />
                     <div className="absolute top-0 inset-x-0 h-4 sm:h-6 flex justify-center z-10">
                       <div className="w-1/3 h-full bg-black rounded-b-xl sm:rounded-b-2xl"></div>
                     </div>
-                    <div className="absolute inset-0 pt-6 sm:pt-10 px-3 sm:px-4 pb-3 sm:pb-4 flex flex-col gap-2 sm:gap-3">
-                      <div className="h-16 sm:h-24 bg-slate-800 rounded-lg w-full relative overflow-hidden border border-white/5">
-                        <div
-                          className="absolute inset-0 bg-brand/5 animate-pulse"
-                          style={{ animationDelay: `${i * 150}ms` }}
-                        />
-                      </div>
-                      <div className="h-5 sm:h-8 bg-slate-800 rounded w-3/4 border border-white/5"></div>
-                      <div className="flex-1 grid grid-cols-2 gap-2">
-                        <div className="bg-slate-800/50 rounded-lg border border-white/5"></div>
-                        <div className="bg-slate-800/50 rounded-lg border border-white/5"></div>
-                        <div className="bg-slate-800/50 rounded-lg border border-white/5"></div>
-                        <div className="bg-slate-800/50 rounded-lg border border-white/5"></div>
-                      </div>
-                    </div>
+                    {/* Glass Overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover/aplus:opacity-40 transition-opacity" />
                   </div>
                 </div>
               );
             })}
           </div>
         </div>
-        */}
 
         {/* Static Image Alternative */}
-        <div className="max-w-[1400px] mx-auto relative group">
+        {/* <div className="max-w-[1400px] mx-auto relative group">
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-brand/5 blur-[120px] rounded-full pointer-events-none group-hover:bg-brand/10 transition-colors" />
           <div className="relative z-10 w-full flex justify-center">
             <Image
@@ -373,6 +394,7 @@ export function AmazonPortfolio() {
             />
           </div>
         </div>
+      </div> */}
       </div>
     </section>
   );
