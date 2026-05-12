@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -112,6 +112,29 @@ export function AmazonPortfolio() {
     "/images/1.webp", // Placeholder for 5th if not found
   ];
 
+  const aplusScrollRef = useRef<HTMLDivElement>(null);
+  const [aplusSlide, setAplusSlide] = useState(0);
+
+  const handleAplusScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const slideWidth = container.clientWidth;
+    const newSlide = Math.round(container.scrollLeft / slideWidth);
+    if (newSlide !== aplusSlide) {
+      setAplusSlide(newSlide);
+    }
+  };
+
+  const scrollToAplusSlide = (index: number) => {
+    if (aplusScrollRef.current) {
+      const container = aplusScrollRef.current;
+      container.scrollTo({
+        left: index * container.clientWidth,
+        behavior: "smooth",
+      });
+      setAplusSlide(index);
+    }
+  };
+
   const onProductTouchStart = (e: React.TouchEvent) => {
     setProductTouchEnd(null);
     setProductTouchStart(e.targetTouches[0].clientX);
@@ -137,7 +160,7 @@ export function AmazonPortfolio() {
   };
 
   return (
-    <section className="w-full bg-[#0a0f1a] min-h-screen overflow-hidden relative font-sans">
+    <section className="w-full max-w-[100vw] bg-[#0a0f1a] min-h-screen overflow-hidden relative font-sans">
       {/* Architectural Grid Overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.05]">
         {[...Array(10)].map((_, i) => (
@@ -156,8 +179,8 @@ export function AmazonPortfolio() {
         ))}
       </div>
 
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/10 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand/5 blur-[100px] rounded-full -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-brand/10 blur-[80px] sm:blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-brand/5 blur-[60px] sm:blur-[100px] rounded-full -translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
       {/* --- 1. STORE FRONT PORTFOLIO --- */}
       <div className="container mx-auto px-4 mb-32 relative z-10">
@@ -180,11 +203,10 @@ export function AmazonPortfolio() {
               "/images/amazonstoreimag2.png",
               "/images/amazonstoreimag3.png",
               "/images/amazonstoreimag4.png",
-              "/images/amazonstoreimag5.png",
-              "/images/amazonstoreimag6.png",
+
               "/images/amazonstoreimag3.png",
             ].map((imgSrc, i) => {
-              const total = 7;
+              const total = 5;
               let offset = i - activeIndex;
               if (offset < -Math.floor(total / 2)) offset += total;
               if (offset > Math.floor(total / 2)) offset -= total;
@@ -325,58 +347,127 @@ export function AmazonPortfolio() {
           .animate-scroll-up {
             animation: scrollUp 20s ease-in-out infinite alternate;
           }
+          /* Custom Theme Scrollbar */
+          .theme-scrollbar::-webkit-scrollbar {
+            display: none; /* Hide scrollbar because we have dots */
+          }
+          .box-reflect {
+            -webkit-box-reflect: below 2px linear-gradient(to bottom, transparent 60%, rgba(255,255,255,0.1) 100%);
+          }
+          @media (max-width: 640px) {
+            .box-reflect {
+              -webkit-box-reflect: below 0px linear-gradient(to bottom, transparent 60%, rgba(255,255,255,0.15) 100%);
+            }
+          }
         `}</style>
-        <div className="w-full mx-auto min-h-[420px] sm:h-[600px] flex items-center justify-start sm:justify-center perspective-[3000px] overflow-x-auto overflow-y-hidden py-10 scrollbar-hide px-6 sm:px-0">
-          <div
-            className="flex items-center justify-start sm:justify-center w-max sm:w-full gap-4 sm:gap-0 pr-8 sm:pr-0"
-            style={{ transformStyle: "preserve-3d" }}
+        
+        <div className="relative max-w-[1400px] mx-auto">
+          {/* Ambient Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand/20 blur-[100px] sm:blur-[140px] rounded-full z-0 pointer-events-none"></div>
+
+          {/* Slider Container */}
+          <div 
+            ref={aplusScrollRef}
+            onScroll={handleAplusScroll}
+            className="w-full mx-auto min-h-[300px] sm:min-h-[500px] lg:min-h-[650px] flex items-center perspective-[3000px] overflow-x-auto overflow-y-hidden pt-8 sm:pt-10 pb-16 sm:pb-32 px-0 theme-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing relative z-10"
           >
             {[
-              "/images/aplusimg.jpg",
-              "/images/aplusimg1.jpg",
-              "/images/aplusimg2.jpg",
-              "/images/aplusimg3.jpg",
-              "/images/aplusimg4.jpg",
-              "/images/aplusimg5.jpg",
-            ].map((src, i) => {
-              return (
-                <div
-                  key={i}
-                  className={cn(
-                    "relative flex-shrink-0 w-[180px] sm:w-[220px] md:w-[240px] h-[380px] sm:h-[480px] md:h-[520px] rounded-[1.5rem] sm:rounded-[2rem] bg-[#0F172A] border-[4px] sm:border-[6px] border-black shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-4 group/aplus",
-                    i !== 0 && "sm:ml-[10px]"
-                  )}
-                  style={{
-                    transform: `
-                      rotateX(20deg) 
-                      rotateY(-20deg) 
-                      rotateZ(10deg)
-                      translateX(${i * 10}px)
-                      translateY(${i * 10}px)
-                    `,
-                    zIndex: 6 - i,
-                  }}
-                >
-                  <div className="w-full h-full bg-slate-900 relative overflow-hidden">
-                    <Image
-                      src={src}
-                      alt={`A+ Content Showcase ${i + 1}`}
-                      fill
-                      className={cn(
-                        "object-cover",
-                        i % 2 === 0 ? "animate-scroll-down" : "animate-scroll-up"
-                      )}
-                      sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 240px"
-                    />
-                    <div className="absolute top-0 inset-x-0 h-4 sm:h-6 flex justify-center z-10">
-                      <div className="w-1/3 h-full bg-black rounded-b-xl sm:rounded-b-2xl"></div>
+              [
+                "/images/aplusimg.jpg",
+                "/images/aplusimg1.jpg",
+                "/images/aplusimg2.jpg",
+              ],
+              [
+                "/images/aplusimg3.jpg",
+                "/images/aplusimg4.jpg",
+                "/images/aplusimg5.jpg",
+              ]
+            ].map((slideGroup, slideIndex) => (
+              <div
+                key={slideIndex}
+                className="flex items-center justify-center w-full shrink-0 snap-center gap-1 sm:gap-4 lg:gap-8 px-2 sm:px-6 md:px-8"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {slideGroup.map((src, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="relative flex-shrink-0 w-[60px] sm:w-[160px] md:w-[200px] lg:w-[240px] h-[130px] sm:h-[340px] md:h-[440px] lg:h-[520px] rounded-[0.4rem] sm:rounded-[1.5rem] lg:rounded-[2rem] bg-[#0F172A] border-[2px] sm:border-[4px] lg:border-[6px] border-black shadow-[10px_10px_15px_rgba(0,0,0,0.5)] sm:shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 group/aplus box-reflect"
+                      style={{
+                        transform: `
+                          rotateX(20deg) 
+                          rotateY(-20deg) 
+                          rotateZ(10deg)
+                          translateX(${i * 8}px)
+                          translateY(${i * 8}px)
+                        `,
+                        zIndex: 6 - i,
+                      }}
+                    >
+                      <div className="w-full h-full bg-slate-900 relative overflow-hidden">
+                        <Image
+                          src={src}
+                          alt={`A+ Content Showcase ${slideIndex * 3 + i + 1}`}
+                          fill
+                          className={cn(
+                            "object-cover group-hover/aplus:[animation-play-state:paused]",
+                            (slideIndex * 3 + i) % 2 === 0
+                              ? "animate-scroll-down"
+                              : "animate-scroll-up",
+                          )}
+                          sizes="(max-width: 640px) 60px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 240px"
+                        />
+                        <div className="absolute top-0 inset-x-0 h-[4px] sm:h-4 lg:h-6 flex justify-center z-10">
+                          <div className="w-1/3 h-full bg-black rounded-b-[2px] sm:rounded-b-xl lg:rounded-b-2xl"></div>
+                        </div>
+                        {/* Glass Overlay for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover/aplus:opacity-40 transition-opacity" />
+                      </div>
                     </div>
-                    {/* Glass Overlay for depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover/aplus:opacity-40 transition-opacity" />
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="absolute bottom-4 sm:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20">
+            <button
+              onClick={() => scrollToAplusSlide(0)}
+              className={cn(
+                "p-2 rounded-full transition-all duration-300 border-2",
+                aplusSlide === 0 
+                  ? "border-brand bg-brand/20 text-brand scale-110" 
+                  : "border-white/20 text-white/50 hover:border-white/50 hover:text-white"
+              )}
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+            <div className="flex gap-3">
+              {[0, 1].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToAplusSlide(index)}
+                  className={cn(
+                    "w-2.5 sm:w-3 rounded-full transition-all duration-300",
+                    aplusSlide === index
+                      ? "h-2.5 sm:h-3 bg-brand shadow-[0_0_10px_rgba(0,103,79,0.8)] scale-125"
+                      : "h-2.5 sm:h-3 bg-white/20 hover:bg-white/50"
+                  )}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => scrollToAplusSlide(1)}
+              className={cn(
+                "p-2 rounded-full transition-all duration-300 border-2",
+                aplusSlide === 1 
+                  ? "border-brand bg-brand/20 text-brand scale-110" 
+                  : "border-white/20 text-white/50 hover:border-white/50 hover:text-white"
+              )}
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
           </div>
         </div>
 
