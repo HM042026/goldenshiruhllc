@@ -98,19 +98,129 @@ export function AmazonPortfolio() {
     return () => clearInterval(interval);
   }, [nextSlide]);
 
-  const [activeProductIndex, setActiveProductIndex] = useState(0);
-  const [productTouchStart, setProductTouchStart] = useState<number | null>(
+  const [activeCollectionIndex, setActiveCollectionIndex] = useState(0);
+  const [collectionTouchStart, setCollectionTouchStart] = useState<
+    number | null
+  >(null);
+  const [collectionTouchEnd, setCollectionTouchEnd] = useState<number | null>(
     null,
   );
-  const [productTouchEnd, setProductTouchEnd] = useState<number | null>(null);
 
-  const productImages = [
-    "/images/1.webp",
-    "/images/2.webp",
-    "/images/3.webp",
-    "/images/4.webp",
-    "/images/1.webp", // Placeholder for 5th if not found
+  const productCollections = [
+    [
+      // Product 1
+      "/productimages/pd1img1.jpg",
+      "/productimages/pd1img2.png",
+      "/productimages/pd1img3.jpg",
+      "/productimages/pd1img4.jpg",
+      "/productimages/pd1img5.jpg",
+      "/productimages/pd1img6.jpg",
+    ],
+    [
+      // Product 2
+      "/productimages/pd2img1.jpg",
+      "/productimages/pd2img2.jpg",
+      "/productimages/pd2img3.jpg",
+      "/productimages/pd2img4.jpg",
+      "/productimages/pd2img5.jpg",
+      "/productimages/pd2img6.jpg",
+      "/productimages/pd2img7.jpg",
+    ],
+    [
+      // Product 3
+      "/productimages/pd3img (1).jpg",
+      "/productimages/pd3img (2).jpg",
+      "/productimages/pd3img (3).jpg",
+      "/productimages/pd3img (4).jpg",
+      "/productimages/pd3img (5).jpg",
+      "/productimages/pd3img (6).jpg",
+    ],
+    [
+      // Product 4
+      "/productimages/pd4img (1).jpg",
+      "/productimages/pd4img (2).jpg",
+      "/productimages/pd4img (3).jpg",
+      "/productimages/pd4img (4).jpg",
+      "/productimages/pd4img (5).jpg",
+      "/productimages/pd4img (7).jpg",
+      "/productimages/pd4img (8).jpg",
+      "/productimages/pd4img (9).jpg",
+    ],
+    [
+      // Product 5
+      "/productimages/pd5img (1).jpg",
+      "/productimages/pd5img (2).jpg",
+      "/productimages/pd5img (3).jpg",
+      "/productimages/pd5img (4).jpg",
+    ],
   ];
+
+  const getBentoLayout = (total: number) => {
+    if (total === 4) {
+      return {
+        container:
+          "grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        items: [
+          "md:col-span-1 md:row-span-1",
+          "md:col-span-1 md:row-span-1",
+          "md:col-span-1 md:row-span-1",
+          "md:col-span-1 md:row-span-1",
+        ],
+      };
+    }
+    if (total === 6) {
+      return {
+        container:
+          "grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        items: [
+          "md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-2",
+          "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-1",
+          "md:col-start-3 md:col-span-1 md:row-start-2 md:row-span-1",
+          "md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1",
+          "md:col-start-2 md:col-span-1 md:row-start-3 md:row-span-1",
+          "md:col-start-3 md:col-span-1 md:row-start-3 md:row-span-1",
+        ],
+      };
+    }
+    if (total === 7) {
+      return {
+        container:
+          "grid grid-cols-1 md:grid-cols-4 md:grid-rows-6 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        items: [
+          "md:col-start-1 md:col-span-1 md:row-start-1 md:row-span-3",
+          "md:col-start-2 md:col-span-1 md:row-start-1 md:row-span-2",
+          "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-2",
+          "md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-3",
+          "md:col-start-1 md:col-span-1 md:row-start-4 md:row-span-3",
+          "md:col-start-2 md:col-span-2 md:row-start-3 md:row-span-4",
+          "md:col-start-4 md:col-span-1 md:row-start-4 md:row-span-3",
+        ],
+      };
+    }
+    if (total === 8) {
+      return {
+        container:
+          "grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        items: [
+          "md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-2",
+          "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-1",
+          "md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-1",
+          "md:col-start-3 md:col-span-1 md:row-start-2 md:row-span-1",
+          "md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1",
+          "md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-2",
+          "md:col-start-2 md:col-span-2 md:row-start-3 md:row-span-2",
+          "md:col-start-4 md:col-span-1 md:row-start-3 md:row-span-2",
+        ],
+      };
+    }
+
+    // Fallback
+    return {
+      container:
+        "grid grid-cols-1 md:grid-cols-3 auto-rows-[250px] gap-3 sm:gap-4 w-full",
+      items: Array(total).fill("col-span-1 row-span-1"),
+    };
+  };
 
   const aplusScrollRef = useRef<HTMLDivElement>(null);
   const [aplusSlide, setAplusSlide] = useState(0);
@@ -135,26 +245,29 @@ export function AmazonPortfolio() {
     }
   };
 
-  const onProductTouchStart = (e: React.TouchEvent) => {
-    setProductTouchEnd(null);
-    setProductTouchStart(e.targetTouches[0].clientX);
+  const onCollectionTouchStart = (e: React.TouchEvent) => {
+    setCollectionTouchEnd(null);
+    setCollectionTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onProductTouchMove = (e: React.TouchEvent) => {
-    setProductTouchEnd(e.targetTouches[0].clientX);
+  const onCollectionTouchMove = (e: React.TouchEvent) => {
+    setCollectionTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const onProductTouchEnd = () => {
-    if (!productTouchStart || !productTouchEnd) return;
-    const distance = productTouchStart - productTouchEnd;
+  const onCollectionTouchEnd = () => {
+    if (!collectionTouchStart || !collectionTouchEnd) return;
+    const distance = collectionTouchStart - collectionTouchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
 
     if (isLeftSwipe) {
-      setActiveProductIndex((prev) => (prev + 1) % productImages.length);
+      setActiveCollectionIndex(
+        (prev) => (prev + 1) % productCollections.length,
+      );
     } else if (isRightSwipe) {
-      setActiveProductIndex(
-        (prev) => (prev - 1 + productImages.length) % productImages.length,
+      setActiveCollectionIndex(
+        (prev) =>
+          (prev - 1 + productCollections.length) % productCollections.length,
       );
     }
   };
@@ -276,47 +389,93 @@ export function AmazonPortfolio() {
           subtitle="Stop the scroll with professional, high-fidelity product photography designed to highlight every USP."
         />
 
-        <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 sm:gap-10">
-          {/* Main Image Slider */}
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-6 sm:gap-10">
+          {/* Main Slide Area (Masonry Grid) */}
           <div
-            className="w-full aspect-square sm:aspect-[4/3] rounded-[2rem] sm:rounded-[3rem] border-none overflow-hidden relative cursor-grab active:cursor-grabbing group p-1 sm:p-2"
-            onTouchStart={onProductTouchStart}
-            onTouchMove={onProductTouchMove}
-            onTouchEnd={onProductTouchEnd}
+            className="w-full relative cursor-grab active:cursor-grabbing min-h-[500px]"
+            onTouchStart={onCollectionTouchStart}
+            onTouchMove={onCollectionTouchMove}
+            onTouchEnd={onCollectionTouchEnd}
           >
-            <div className="absolute inset-0 transition-all duration-500 ease-in-out flex items-center justify-center">
-              <Image
-                src={productImages[activeProductIndex]}
-                alt={`Product View ${activeProductIndex + 1}`}
-                width={1400}
-                height={1050}
-                className="w-full h-full object-contain transition-transform duration-700 hover:scale-[1.02]"
-                priority
-              />
-            </div>
+            {productCollections.map((collection, index) => {
+              const bento = getBentoLayout(collection.length);
+              return (
+                <div
+                  key={index}
+                  className={cn(
+                    "w-full transition-all duration-700 ease-in-out absolute top-0 left-0",
+                    activeCollectionIndex === index
+                      ? "opacity-100 translate-x-0 relative z-10"
+                      : "opacity-0 translate-x-10 pointer-events-none absolute z-0",
+                  )}
+                >
+                  <div className={bento.container}>
+                    {collection.map((src, imgIdx) => (
+                      <div
+                        key={imgIdx}
+                        className={cn(
+                          "relative rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/10 group w-full min-h-[250px] md:min-h-0 bg-gradient-to-t from-black/70 to-transparent",
+                          bento.items[imgIdx] || "md:col-span-1 md:row-span-1",
+                        )}
+                      >
+                        {/* Main Image without cropping */}
+                        <Image
+                          src={src}
+                          alt={`Product ${index + 1} Image ${imgIdx + 1}`}
+                          fill
+                          className="object-contain transition-transform duration-700 group-hover:scale-105 relative z-10"
+                          priority={index === 0}
+                        />
+                        {/* Glass Overlay for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-20" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          {/* Thumbnails Row */}
-          <div className="w-full flex justify-center gap-3 sm:gap-5 overflow-x-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {productImages.map((src, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveProductIndex(i)}
-                className={cn(
-                  "relative flex-shrink-0 w-16 sm:w-28 md:w-36 aspect-square rounded-xl sm:rounded-2xl overflow-hidden border-[3px] sm:border-[4px] transition-all duration-300",
-                  i === activeProductIndex
-                    ? "border-brand scale-110 shadow-xl shadow-brand/20"
-                    : "border-white/5 hover:border-brand/30 opacity-40 hover:opacity-100",
-                )}
-              >
-                <Image
-                  src={src}
-                  alt={`Thumb ${i + 1}`}
-                  fill
-                  className="object-cover"
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-8 z-20">
+            <button
+              onClick={() =>
+                setActiveCollectionIndex(
+                  (prev) =>
+                    (prev - 1 + productCollections.length) %
+                    productCollections.length,
+                )
+              }
+              className="p-2 sm:p-3 rounded-full transition-all duration-300 border-2 border-white/20 text-white/50 hover:border-brand hover:text-brand hover:bg-brand/10 bg-black/40 backdrop-blur-md"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            <div className="flex gap-2 sm:gap-3 bg-black/40 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/10">
+              {productCollections.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveCollectionIndex(i)}
+                  className={cn(
+                    "transition-all duration-500 relative",
+                    activeCollectionIndex === i
+                      ? "w-8 sm:w-12 h-2 sm:h-2.5 bg-brand rounded-full shadow-[0_0_15px_rgba(0,103,79,0.8)]"
+                      : "w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/30 rounded-full hover:bg-white/60",
+                  )}
                 />
-              </button>
-            ))}
+              ))}
+            </div>
+
+            <button
+              onClick={() =>
+                setActiveCollectionIndex(
+                  (prev) => (prev + 1) % productCollections.length,
+                )
+              }
+              className="p-2 sm:p-3 rounded-full transition-all duration-300 border-2 border-white/20 text-white/50 hover:border-brand hover:text-brand hover:bg-brand/10 bg-black/40 backdrop-blur-md"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
           </div>
         </div>
       </div>
@@ -360,13 +519,13 @@ export function AmazonPortfolio() {
             }
           }
         `}</style>
-        
+
         <div className="relative max-w-[1400px] mx-auto">
           {/* Ambient Background Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand/20 blur-[100px] sm:blur-[140px] rounded-full z-0 pointer-events-none"></div>
 
           {/* Slider Container */}
-          <div 
+          <div
             ref={aplusScrollRef}
             onScroll={handleAplusScroll}
             className="w-full mx-auto min-h-[300px] sm:min-h-[500px] lg:min-h-[650px] flex items-center perspective-[3000px] overflow-x-auto overflow-y-hidden pt-8 sm:pt-10 pb-16 sm:pb-32 px-0 theme-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing relative z-10"
@@ -381,7 +540,7 @@ export function AmazonPortfolio() {
                 "/images/aplusimg3.jpg",
                 "/images/aplusimg4.jpg",
                 "/images/aplusimg5.jpg",
-              ]
+              ],
             ].map((slideGroup, slideIndex) => (
               <div
                 key={slideIndex}
@@ -436,9 +595,9 @@ export function AmazonPortfolio() {
               onClick={() => scrollToAplusSlide(0)}
               className={cn(
                 "p-2 rounded-full transition-all duration-300 border-2",
-                aplusSlide === 0 
-                  ? "border-brand bg-brand/20 text-brand scale-110" 
-                  : "border-white/20 text-white/50 hover:border-white/50 hover:text-white"
+                aplusSlide === 0
+                  ? "border-brand bg-brand/20 text-brand scale-110"
+                  : "border-white/20 text-white/50 hover:border-white/50 hover:text-white",
               )}
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -452,7 +611,7 @@ export function AmazonPortfolio() {
                     "w-2.5 sm:w-3 rounded-full transition-all duration-300",
                     aplusSlide === index
                       ? "h-2.5 sm:h-3 bg-brand shadow-[0_0_10px_rgba(0,103,79,0.8)] scale-125"
-                      : "h-2.5 sm:h-3 bg-white/20 hover:bg-white/50"
+                      : "h-2.5 sm:h-3 bg-white/20 hover:bg-white/50",
                   )}
                 />
               ))}
@@ -461,9 +620,9 @@ export function AmazonPortfolio() {
               onClick={() => scrollToAplusSlide(1)}
               className={cn(
                 "p-2 rounded-full transition-all duration-300 border-2",
-                aplusSlide === 1 
-                  ? "border-brand bg-brand/20 text-brand scale-110" 
-                  : "border-white/20 text-white/50 hover:border-white/50 hover:text-white"
+                aplusSlide === 1
+                  ? "border-brand bg-brand/20 text-brand scale-110"
+                  : "border-white/20 text-white/50 hover:border-white/50 hover:text-white",
               )}
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
