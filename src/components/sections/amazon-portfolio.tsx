@@ -106,6 +106,14 @@ export function AmazonPortfolio() {
     null,
   );
 
+  const productBgColors = [
+    "#007C79", // First
+    "#3496C0", // Second
+    "#040706", // Third
+    "#063F57", // Fourth
+    "#FBED02", // Fifth
+  ];
+
   const productCollections = [
     [
       // Product 1
@@ -155,69 +163,74 @@ export function AmazonPortfolio() {
     ],
   ];
 
-  const getBentoLayout = (total: number) => {
+  const getBentoLayout = (
+    total: number,
+    isThumbnail: boolean = false,
+    productIndex: number = -1,
+  ) => {
+    const gap = isThumbnail ? "gap-[1px]" : "gap-[2px] sm:gap-1";
+    const containerBase = `grid w-full h-full ${gap}`;
+
+    const use7Layout = productIndex === 1 || productIndex === 3;
+
+    if (use7Layout || total === 7) {
+      return {
+        container: `${containerBase} grid-cols-4 grid-rows-6`,
+        items: [
+          "col-start-1 col-span-1 row-start-1 row-span-3",
+          "col-start-2 col-span-1 row-start-1 row-span-2",
+          "col-start-3 col-span-1 row-start-1 row-span-2",
+          "col-start-4 col-span-1 row-start-1 row-span-3",
+          "col-start-1 col-span-1 row-start-4 row-span-3",
+          "col-start-2 col-span-2 row-start-3 row-span-4",
+          "col-start-4 col-span-1 row-start-4 row-span-3",
+        ],
+      };
+    }
+
     if (total === 4) {
       return {
-        container:
-          "grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        container: `${containerBase} grid-cols-2 grid-rows-2`,
         items: [
-          "md:col-span-1 md:row-span-1",
-          "md:col-span-1 md:row-span-1",
-          "md:col-span-1 md:row-span-1",
-          "md:col-span-1 md:row-span-1",
+          "col-span-1 row-span-1",
+          "col-span-1 row-span-1",
+          "col-span-1 row-span-1",
+          "col-span-1 row-span-1",
         ],
       };
     }
     if (total === 6) {
       return {
-        container:
-          "grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        container: `${containerBase} grid-cols-3 grid-rows-3`,
         items: [
-          "md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-2",
-          "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-1",
-          "md:col-start-3 md:col-span-1 md:row-start-2 md:row-span-1",
-          "md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1",
-          "md:col-start-2 md:col-span-1 md:row-start-3 md:row-span-1",
-          "md:col-start-3 md:col-span-1 md:row-start-3 md:row-span-1",
-        ],
-      };
-    }
-    if (total === 7) {
-      return {
-        container:
-          "grid grid-cols-1 md:grid-cols-4 md:grid-rows-6 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
-        items: [
-          "md:col-start-1 md:col-span-1 md:row-start-1 md:row-span-3",
-          "md:col-start-2 md:col-span-1 md:row-start-1 md:row-span-2",
-          "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-2",
-          "md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-3",
-          "md:col-start-1 md:col-span-1 md:row-start-4 md:row-span-3",
-          "md:col-start-2 md:col-span-2 md:row-start-3 md:row-span-4",
-          "md:col-start-4 md:col-span-1 md:row-start-4 md:row-span-3",
+          "col-start-1 col-span-2 row-start-1 row-span-2",
+          "col-start-3 col-span-1 row-start-1 row-span-1",
+          "col-start-3 col-span-1 row-start-2 row-span-1",
+          "col-start-1 col-span-1 row-start-3 row-span-1",
+          "col-start-2 col-span-1 row-start-3 row-span-1",
+          "col-start-3 col-span-1 row-start-3 row-span-1",
         ],
       };
     }
     if (total === 8) {
       return {
-        container:
-          "grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-3 sm:gap-4 w-full md:h-[600px] lg:h-[750px]",
+        container: `${containerBase} grid-cols-4 grid-rows-4`,
         items: [
-          "md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-2",
-          "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-1",
-          "md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-1",
-          "md:col-start-3 md:col-span-1 md:row-start-2 md:row-span-1",
-          "md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1",
-          "md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-2",
-          "md:col-start-2 md:col-span-2 md:row-start-3 md:row-span-2",
-          "md:col-start-4 md:col-span-1 md:row-start-3 md:row-span-2",
+          "col-start-1 col-span-2 row-start-1 row-span-2",
+          "col-start-3 col-span-1 row-start-1 row-span-1",
+          "col-start-4 col-span-1 row-start-1 row-span-1",
+          "col-start-3 col-span-1 row-start-2 row-span-1",
+          "col-start-4 col-span-1 row-start-2 row-span-1",
+          "col-start-1 col-span-1 row-start-3 row-span-2",
+          "col-start-2 col-span-2 row-start-3 row-span-2",
+          "col-start-4 col-span-1 row-start-3 row-span-2",
         ],
       };
     }
 
     // Fallback
     return {
-      container:
-        "grid grid-cols-1 md:grid-cols-3 auto-rows-[250px] gap-3 sm:gap-4 w-full",
+      container: `${containerBase} grid-cols-3 grid-rows-2`,
       items: Array(total).fill("col-span-1 row-span-1"),
     };
   };
@@ -389,21 +402,24 @@ export function AmazonPortfolio() {
           subtitle="Stop the scroll with professional, high-fidelity product photography designed to highlight every USP."
         />
 
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-6 sm:gap-10">
-          {/* Main Slide Area (Masonry Grid) */}
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-4 sm:gap-6">
+          {/* Main Slide Area (Bento Grid) */}
           <div
-            className="w-full relative cursor-grab active:cursor-grabbing min-h-[500px]"
+            className="w-full relative cursor-grab active:cursor-grabbing h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
             onTouchStart={onCollectionTouchStart}
             onTouchMove={onCollectionTouchMove}
             onTouchEnd={onCollectionTouchEnd}
           >
             {productCollections.map((collection, index) => {
-              const bento = getBentoLayout(collection.length);
+              const bento = getBentoLayout(collection.length, false, index);
               return (
                 <div
                   key={index}
+                  style={{
+                    backgroundColor: productBgColors[index] || "transparent",
+                  }}
                   className={cn(
-                    "w-full transition-all duration-700 ease-in-out absolute top-0 left-0",
+                    "w-full h-full transition-all duration-700 ease-in-out absolute top-0 left-0 rounded-md sm:rounded-xl p-1 sm:p-2",
                     activeCollectionIndex === index
                       ? "opacity-100 translate-x-0 relative z-10"
                       : "opacity-0 translate-x-10 pointer-events-none absolute z-0",
@@ -414,8 +430,8 @@ export function AmazonPortfolio() {
                       <div
                         key={imgIdx}
                         className={cn(
-                          "relative rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/10 group w-full min-h-[250px] md:min-h-0 bg-gradient-to-t from-black/70 to-transparent",
-                          bento.items[imgIdx] || "md:col-span-1 md:row-span-1",
+                          "relative overflow-hidden group",
+                          bento.items[imgIdx] || "col-span-1 row-span-1",
                         )}
                       >
                         {/* Main Image without cropping */}
@@ -423,11 +439,9 @@ export function AmazonPortfolio() {
                           src={src}
                           alt={`Product ${index + 1} Image ${imgIdx + 1}`}
                           fill
-                          className="object-contain transition-transform duration-700 group-hover:scale-105 relative z-10"
+                          className="object-contain transition-transform duration-700 rounded-[2px] group-hover:scale-105 relative z-10"
                           priority={index === 0}
                         />
-                        {/* Glass Overlay for depth */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-20" />
                       </div>
                     ))}
                   </div>
@@ -437,45 +451,46 @@ export function AmazonPortfolio() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-8 z-20">
-            <button
-              onClick={() =>
-                setActiveCollectionIndex(
-                  (prev) =>
-                    (prev - 1 + productCollections.length) %
-                    productCollections.length,
-                )
-              }
-              className="p-2 sm:p-3 rounded-full transition-all duration-300 border-2 border-white/20 text-white/50 hover:border-brand hover:text-brand hover:bg-brand/10 bg-black/40 backdrop-blur-md"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-
-            <div className="flex gap-2 sm:gap-3 bg-black/40 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/10">
-              {productCollections.map((_, i) => (
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 mt-2 sm:mt-6 z-20 px-2 w-full">
+            {productCollections.map((collection, i) => {
+              const bento = getBentoLayout(collection.length, true, i);
+              return (
                 <button
                   key={i}
                   onClick={() => setActiveCollectionIndex(i)}
+                  style={{
+                    backgroundColor: productBgColors[i] || "transparent",
+                  }}
                   className={cn(
-                    "transition-all duration-500 relative",
+                    "relative overflow-hidden transition-all duration-300 rounded-md sm:rounded-lg border-[2px] sm:border-[3px] shrink-0",
                     activeCollectionIndex === i
-                      ? "w-8 sm:w-12 h-2 sm:h-2.5 bg-brand rounded-full shadow-[0_0_15px_rgba(0,103,79,0.8)]"
-                      : "w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/30 rounded-full hover:bg-white/60",
+                      ? "border-brand shadow-[0_0_15px_rgba(0,103,79,0.8)] scale-105 z-10 opacity-100"
+                      : "border-transparent opacity-50 hover:opacity-100 hover:border-white/30 hover:scale-105",
+                    "w-[calc(20%-8px)] max-w-[140px] aspect-[4/3] p-0.5 sm:p-1",
                   )}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={() =>
-                setActiveCollectionIndex(
-                  (prev) => (prev + 1) % productCollections.length,
-                )
-              }
-              className="p-2 sm:p-3 rounded-full transition-all duration-300 border-2 border-white/20 text-white/50 hover:border-brand hover:text-brand hover:bg-brand/10 bg-black/40 backdrop-blur-md"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
+                >
+                  <div className={bento.container}>
+                    {collection.map((src, imgIdx) => (
+                      <div
+                        key={imgIdx}
+                        className={cn(
+                          "relative overflow-hidden",
+                          bento.items[imgIdx] || "col-span-1 row-span-1",
+                        )}
+                      >
+                        <Image
+                          src={src}
+                          alt={`Thumbnail ${i}`}
+                          fill
+                          className="object-cover rounded-[2px]"
+                          sizes="(max-width: 768px) 30px, 60px"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -524,11 +539,10 @@ export function AmazonPortfolio() {
           {/* Ambient Background Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand/20 blur-[100px] sm:blur-[140px] rounded-full z-0 pointer-events-none"></div>
 
-          {/* Slider Container */}
           <div
             ref={aplusScrollRef}
             onScroll={handleAplusScroll}
-            className="w-full mx-auto min-h-[300px] sm:min-h-[500px] lg:min-h-[650px] flex items-center perspective-[3000px] overflow-x-auto overflow-y-hidden pt-8 sm:pt-10 pb-16 sm:pb-32 px-0 theme-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing relative z-10"
+            className="w-full mx-auto min-h-[350px] sm:min-h-[500px] lg:min-h-[650px] flex items-center perspective-[3000px] overflow-x-auto overflow-y-hidden pt-8 sm:pt-10 pb-16 sm:pb-32 px-0 theme-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing relative z-10"
           >
             {[
               [
@@ -551,7 +565,7 @@ export function AmazonPortfolio() {
                   return (
                     <div
                       key={i}
-                      className="relative flex-shrink-0 w-[60px] sm:w-[160px] md:w-[200px] lg:w-[240px] h-[130px] sm:h-[340px] md:h-[440px] lg:h-[520px] rounded-[0.4rem] sm:rounded-[1.5rem] lg:rounded-[2rem] bg-[#0F172A] border-[2px] sm:border-[4px] lg:border-[6px] border-black shadow-[10px_10px_15px_rgba(0,0,0,0.5)] sm:shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 group/aplus box-reflect"
+                      className="relative flex-shrink-0 w-[110px] sm:w-[160px] md:w-[200px] lg:w-[240px] h-[230px] sm:h-[340px] md:h-[440px] lg:h-[520px] rounded-[1rem] sm:rounded-[1.5rem] lg:rounded-[2rem] bg-[#0F172A] border-[2px] sm:border-[4px] lg:border-[6px] border-black shadow-[10px_10px_15px_rgba(0,0,0,0.5)] sm:shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 group/aplus box-reflect"
                       style={{
                         transform: `
                           rotateX(20deg) 
@@ -574,7 +588,7 @@ export function AmazonPortfolio() {
                               ? "animate-scroll-down"
                               : "animate-scroll-up",
                           )}
-                          sizes="(max-width: 640px) 60px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 240px"
+                          sizes="(max-width: 640px) 110px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 240px"
                         />
                         <div className="absolute top-0 inset-x-0 h-[4px] sm:h-4 lg:h-6 flex justify-center z-10">
                           <div className="w-1/3 h-full bg-black rounded-b-[2px] sm:rounded-b-xl lg:rounded-b-2xl"></div>
