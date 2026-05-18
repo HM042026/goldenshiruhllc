@@ -171,7 +171,8 @@ export function AmazonPortfolio() {
     const gap = isThumbnail ? "gap-[1px]" : "gap-[2px] sm:gap-1";
     const containerBase = `grid w-full h-full ${gap}`;
 
-    const use7Layout = productIndex === 1 || productIndex === 3;
+    const use7Layout =
+      productIndex === 0 || productIndex === 1 || productIndex === 3;
 
     if (use7Layout || total === 7) {
       return {
@@ -539,10 +540,11 @@ export function AmazonPortfolio() {
           {/* Ambient Background Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand/20 blur-[100px] sm:blur-[140px] rounded-full z-0 pointer-events-none"></div>
 
+          {/* Slider Container */}
           <div
             ref={aplusScrollRef}
             onScroll={handleAplusScroll}
-            className="w-full mx-auto min-h-[350px] sm:min-h-[500px] lg:min-h-[650px] flex items-center perspective-[3000px] overflow-x-auto overflow-y-hidden pt-8 sm:pt-10 pb-16 sm:pb-32 px-0 theme-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing relative z-10"
+            className="w-full mx-auto min-h-[300px] sm:min-h-[500px] lg:min-h-[650px] flex items-center perspective-[3000px] overflow-x-auto overflow-y-hidden pt-8 sm:pt-10 pb-16 sm:pb-32 px-0 theme-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing relative z-10"
           >
             {[
               [
@@ -565,7 +567,7 @@ export function AmazonPortfolio() {
                   return (
                     <div
                       key={i}
-                      className="relative flex-shrink-0 w-[110px] sm:w-[160px] md:w-[200px] lg:w-[240px] h-[230px] sm:h-[340px] md:h-[440px] lg:h-[520px] rounded-[1rem] sm:rounded-[1.5rem] lg:rounded-[2rem] bg-[#0F172A] border-[2px] sm:border-[4px] lg:border-[6px] border-black shadow-[10px_10px_15px_rgba(0,0,0,0.5)] sm:shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 group/aplus box-reflect"
+                      className="relative flex-shrink-0 w-[60px] sm:w-[160px] md:w-[200px] lg:w-[240px] h-[130px] sm:h-[340px] md:h-[440px] lg:h-[520px] rounded-[0.4rem] sm:rounded-[1.5rem] lg:rounded-[2rem] bg-[#0F172A] border-[2px] sm:border-[4px] lg:border-[6px] border-black shadow-[10px_10px_15px_rgba(0,0,0,0.5)] sm:shadow-[20px_20px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 group/aplus box-reflect"
                       style={{
                         transform: `
                           rotateX(20deg) 
@@ -588,7 +590,7 @@ export function AmazonPortfolio() {
                               ? "animate-scroll-down"
                               : "animate-scroll-up",
                           )}
-                          sizes="(max-width: 640px) 110px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 240px"
+                          sizes="(max-width: 640px) 60px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 240px"
                         />
                         <div className="absolute top-0 inset-x-0 h-[4px] sm:h-4 lg:h-6 flex justify-center z-10">
                           <div className="w-1/3 h-full bg-black rounded-b-[2px] sm:rounded-b-xl lg:rounded-b-2xl"></div>
