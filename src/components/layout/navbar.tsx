@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const servicesDropdown = [
+const ecommerceDropdown = [
   {
     label: "Account Management",
     href: "/services/amazon-account-management",
@@ -30,6 +30,21 @@ const servicesDropdown = [
     description: "Data-driven advertising for maximum ROAS.",
     icon: BarChart3,
   },
+  {
+    label: "New Product Launch",
+    href: "/services/new-product-launch",
+    description: "Strategic market entry for new products.",
+    icon: Megaphone,
+  },
+  {
+    label: "E-Commerce Store",
+    href: "/services/e-commerce-store",
+    description: "Independent Shopify & WooCommerce builds.",
+    icon: Layout,
+  },
+];
+
+const publishingDropdown = [
   {
     label: "Listing Optimization",
     href: "/services/listing-optimization",
@@ -54,18 +69,6 @@ const servicesDropdown = [
     description: "Custom digital storefronts on Amazon.",
     icon: Layout,
   },
-  {
-    label: "New Product Launch",
-    href: "/services/new-product-launch",
-    description: "Strategic market entry for new products.",
-    icon: Megaphone,
-  },
-  {
-    label: "E-Commerce Store",
-    href: "/services/e-commerce-store",
-    description: "Independent Shopify & WooCommerce builds.",
-    icon: Layout,
-  },
 ];
 
 const navLinks = [
@@ -74,6 +77,18 @@ const navLinks = [
 
   { label: "Contact", href: "/contact" },
 ];
+
+const Logo = () => (
+  <Link href="/" className="flex items-center gap-x-2 group">
+    <div className="flex items-center -space-x-2 transition-transform duration-500 group-hover:scale-110">
+      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-brand" />
+      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gray-800" />
+    </div>
+    <span className="text-lg sm:text-xl font-bold text-gray-900 font-heading">
+      Golden<span className="text-brand">shiruh</span>llc
+    </span>
+  </Link>
+);
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -114,39 +129,24 @@ export default function Navbar() {
     setIsMobileServicesOpen(false);
   };
 
-  const Logo = () => (
-    <Link href="/" className="flex items-center gap-x-2 group">
-      <div className="flex items-center -space-x-2 transition-transform duration-500 group-hover:scale-110">
-        <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-brand" />
-        <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gray-800" />
-      </div>
-      <span className="text-lg sm:text-xl font-bold text-gray-900 font-heading">
-        Golden<span className="text-brand">shiruh</span>llc
-      </span>
-    </Link>
-  );
-
   return (
     <>
       {/* ── Sticky Header ── */}
       <header
-        className={`fixed z-50 transition-all duration-500 ease-in-out ${
-          isScrolled
-            ? "top-4 inset-x-4 sm:inset-x-6 md:inset-x-8 lg:inset-x-12"
-            : "top-0 inset-x-0"
-        }`}
+        className={`fixed z-50 transition-all duration-500 ease-in-out ${isScrolled
+          ? "top-4 inset-x-4 sm:inset-x-6 md:inset-x-8 lg:inset-x-12"
+          : "top-0 inset-x-0"
+          }`}
       >
         <nav
-          className={`mx-auto transition-all duration-500 ease-in-out ${
-            isScrolled || isMobileMenuOpen
-              ? "bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-xl max-w-[1200px]"
-              : "bg-transparent max-w-[1400px]"
-          }`}
+          className={`mx-auto transition-all duration-500 ease-in-out ${isScrolled || isMobileMenuOpen
+            ? "bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-xl max-w-[1200px]"
+            : "bg-transparent max-w-[1400px]"
+            }`}
         >
           <div
-            className={`flex items-center justify-between transition-all duration-500 px-5 sm:px-6 lg:px-8 ${
-              isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-20"
-            }`}
+            className={`flex items-center justify-between transition-all duration-500 px-5 sm:px-6 lg:px-8 ${isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-20"
+              }`}
           >
             {/* Logo */}
             <Logo />
@@ -190,53 +190,103 @@ export default function Navbar() {
                 </Link>
                 {/* Dropdown Panel */}
                 <div
-                  className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ${
-                    isServicesOpen
-                      ? "opacity-100 translate-y-0 pointer-events-auto"
-                      : "opacity-0 -translate-y-2 pointer-events-none"
-                  }`}
+                  className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ${isServicesOpen
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 -translate-y-2 pointer-events-none"
+                    }`}
                 >
-                  <div className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-3xl shadow-2xl p-3 w-[340px]">
+                  <div className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-3xl shadow-2xl p-5 w-[680px] flex flex-col">
                     {/* Header */}
-                    <div className="px-4 py-3 mb-1 border-b border-gray-50">
+                    <div className="px-4 pb-3 mb-4 border-b border-gray-50 shrink-0">
                       <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
                         Our Services
                       </p>
                     </div>
-                    {/* Service Items */}
-                    {servicesDropdown.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setIsServicesOpen(false)}
-                        className="group/item flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all duration-200"
-                      >
-                        <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center text-brand shrink-0 group-hover/item:bg-brand group-hover/item:text-white transition-all duration-300">
-                          <item.icon size={20} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-bold text-gray-900 text-sm group-hover/item:text-brand transition-colors">
-                              {item.label}
-                            </span>
-                            {item.badge && (
-                              <span className="text-[9px] font-black uppercase tracking-widest text-white bg-brand px-2 py-0.5 rounded-full">
-                                {item.badge}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-xs text-gray-500 leading-relaxed">
-                            {item.description}
+                    
+                    {/* Side-by-Side Service Groups */}
+                    <div className="grid grid-cols-2 gap-6">
+                      {/* E-Commerce Group */}
+                      <div>
+                        <div className="px-4 py-1.5 mb-2 bg-brand/5 rounded-lg">
+                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-brand">
+                            E-Commerce Services
                           </p>
                         </div>
-                        <ArrowRight
-                          size={14}
-                          className="text-gray-300 shrink-0 mt-1 group-hover/item:text-brand group-hover/item:translate-x-1 transition-all"
-                        />
-                      </Link>
-                    ))}
+                        <div className="space-y-1">
+                          {ecommerceDropdown.map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              onClick={() => setIsServicesOpen(false)}
+                              className="group/item flex items-start gap-3 p-3 rounded-2xl hover:bg-gray-50 transition-all duration-200"
+                            >
+                              <div className="w-9 h-9 rounded-xl bg-brand/10 flex items-center justify-center text-brand shrink-0 group-hover/item:bg-brand group-hover/item:text-white transition-all duration-300">
+                                <item.icon size={18} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  <span className="font-bold text-gray-900 text-xs group-hover/item:text-brand transition-colors">
+                                    {item.label}
+                                  </span>
+                                  {item.badge && (
+                                    <span className="text-[8px] font-black uppercase tracking-widest text-white bg-brand px-1.5 py-0.5 rounded-full">
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-[11px] text-gray-500 leading-normal">
+                                  {item.description}
+                                </p>
+                              </div>
+                              <ArrowRight
+                                size={12}
+                                className="text-gray-300 shrink-0 mt-1 group-hover/item:text-brand group-hover/item:translate-x-1 transition-all"
+                              />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Publishing Group */}
+                      <div>
+                        <div className="px-4 py-1.5 mb-2 bg-brand/5 rounded-lg">
+                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-brand">
+                            Publishing Services
+                          </p>
+                        </div>
+                        <div className="space-y-1">
+                          {publishingDropdown.map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              onClick={() => setIsServicesOpen(false)}
+                              className="group/item flex items-start gap-3 p-3 rounded-2xl hover:bg-gray-50 transition-all duration-200"
+                            >
+                              <div className="w-9 h-9 rounded-xl bg-brand/10 flex items-center justify-center text-brand shrink-0 group-hover/item:bg-brand group-hover/item:text-white transition-all duration-300">
+                                <item.icon size={18} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  <span className="font-bold text-gray-900 text-xs group-hover/item:text-brand transition-colors">
+                                    {item.label}
+                                  </span>
+                                </div>
+                                <p className="text-[11px] text-gray-500 leading-normal">
+                                  {item.description}
+                                </p>
+                              </div>
+                              <ArrowRight
+                                size={12}
+                                className="text-gray-300 shrink-0 mt-1 group-hover/item:text-brand group-hover/item:translate-x-1 transition-all"
+                              />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
                     {/* Footer CTA */}
-                    <div className="mt-2 pt-2 border-t border-gray-50 px-4 pb-2">
+                    <div className="mt-4 pt-3 border-t border-gray-50 px-4">
                       <Link
                         href="/services"
                         onClick={() => setIsServicesOpen(false)}
@@ -255,18 +305,16 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-4">
               <Link
                 href="/contact"
-                className={`font-medium text-gray-500 hover:text-brand transition-all duration-500 ${
-                  isScrolled ? "text-xs" : "text-sm"
-                }`}
+                className={`font-medium text-gray-500 hover:text-brand transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"
+                  }`}
               >
                 Free Consultation
               </Link>
               <Link href="/contact">
                 <Button
                   size="sm"
-                  className={`bg-brand hover:bg-brand-hover text-white rounded-full transition-all duration-500 ${
-                    isScrolled ? "px-4 h-8 text-xs" : "px-6"
-                  }`}
+                  className={`bg-brand hover:bg-brand-hover text-white rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"
+                    }`}
                 >
                   Contact Us
                 </Button>
@@ -291,11 +339,10 @@ export default function Navbar() {
 
       {/* ── Mobile Full-Screen Overlay ── */}
       <div
-        className={`md:hidden fixed inset-0 bg-white z-40 transition-all duration-500 ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        className={`md:hidden fixed inset-0 bg-white z-40 transition-all duration-500 ${isMobileMenuOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
       >
         <div className="flex flex-col h-full px-7 pt-24 sm:pt-28 pb-8 overflow-y-auto">
           {/* Nav Links */}
@@ -305,11 +352,10 @@ export default function Navbar() {
               <Link href="/services">
                 <button
                   onClick={() => setIsMobileServicesOpen((v) => !v)}
-                  className={`flex items-center justify-between w-full text-4xl sm:text-5xl font-heading font-bold text-gray-900 hover:text-brand transition-all duration-500 py-3 ${
-                    isMobileMenuOpen
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
-                  }`}
+                  className={`flex items-center justify-between w-full text-4xl sm:text-5xl font-heading font-bold text-gray-900 hover:text-brand transition-all duration-500 py-3 ${isMobileMenuOpen
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
+                    }`}
                   style={{ transitionDelay: isMobileMenuOpen ? "0ms" : "0ms" }}
                 >
                   Services
@@ -320,37 +366,74 @@ export default function Navbar() {
               </Link>
               {/* Mobile submenu */}
               <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  isMobileServicesOpen
-                    ? "max-h-[800px] opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
+                className={`overflow-hidden transition-all duration-500 ${isMobileServicesOpen
+                  ? "max-h-[1200px] opacity-100"
+                  : "max-h-0 opacity-0"
+                  }`}
               >
-                <div className="pl-4 pt-2 pb-4 space-y-3 border-l-2 border-brand/20 ml-2">
-                  {servicesDropdown.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      onClick={close}
-                      className="flex items-center gap-3 group/msub"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center text-brand shrink-0 group-hover/msub:bg-brand group-hover/msub:text-white transition-all">
-                        <item.icon size={16} />
-                      </div>
-                      <div>
-                        <p className="font-bold text-base text-gray-800 group-hover/msub:text-brand transition-colors">
-                          {item.label}
-                        </p>
-                        <p className="text-xs text-gray-400 leading-tight">
-                          {item.description}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+                <div className="pl-4 pt-2 pb-4 space-y-4 border-l-2 border-brand/20 ml-2">
+                  {/* E-Commerce Group */}
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-brand/60 mb-2">
+                      E-Commerce Services
+                    </p>
+                    <div className="space-y-3">
+                      {ecommerceDropdown.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={close}
+                          className="flex items-center gap-3 group/msub"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center text-brand shrink-0 group-hover/msub:bg-brand group-hover/msub:text-white transition-all">
+                            <item.icon size={16} />
+                          </div>
+                          <div>
+                            <p className="font-bold text-base text-gray-800 group-hover/msub:text-brand transition-colors">
+                              {item.label}
+                            </p>
+                            <p className="text-xs text-gray-400 leading-tight">
+                              {item.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Publishing Group */}
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-brand/60 mb-2">
+                      Publishing Services
+                    </p>
+                    <div className="space-y-3">
+                      {publishingDropdown.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={close}
+                          className="flex items-center gap-3 group/msub"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center text-brand shrink-0 group-hover/msub:bg-brand group-hover/msub:text-white transition-all">
+                            <item.icon size={16} />
+                          </div>
+                          <div>
+                            <p className="font-bold text-base text-gray-800 group-hover/msub:text-brand transition-colors">
+                              {item.label}
+                            </p>
+                            <p className="text-xs text-gray-400 leading-tight">
+                              {item.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
                   <Link
                     href="/services"
                     onClick={close}
-                    className="flex items-center gap-1 text-sm font-bold text-brand/60 hover:text-brand transition-colors mt-2"
+                    className="flex items-center gap-1 text-sm font-bold text-brand/60 hover:text-brand transition-colors mt-2 pt-2 border-t border-gray-100"
                   >
                     All Solutions <ArrowRight size={14} />
                   </Link>
@@ -364,11 +447,10 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={close}
-                className={`text-4xl sm:text-5xl font-heading font-bold text-gray-900 hover:text-brand transition-all duration-500 py-2 ${
-                  isMobileMenuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
+                className={`text-4xl sm:text-5xl font-heading font-bold text-gray-900 hover:text-brand transition-all duration-500 py-2 ${isMobileMenuOpen
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+                  }`}
                 style={{
                   transitionDelay: isMobileMenuOpen
                     ? `${(i + 1) * 70}ms`
@@ -382,11 +464,10 @@ export default function Navbar() {
 
           {/* Bottom CTA Buttons */}
           <div
-            className={`flex flex-col gap-3 pt-8 border-t border-gray-100 transition-all duration-500 ${
-              isMobileMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
-            }`}
+            className={`flex flex-col gap-3 pt-8 border-t border-gray-100 transition-all duration-500 ${isMobileMenuOpen
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+              }`}
             style={{ transitionDelay: isMobileMenuOpen ? "350ms" : "0ms" }}
           >
             <Link

@@ -9,7 +9,7 @@ interface Service {
   tag: string;
 }
 
-const services: Service[] = [
+const ecommerceServices: Service[] = [
   {
     tag: "Core Service",
     icon: <Settings className="w-6 h-6" />,
@@ -24,6 +24,23 @@ const services: Service[] = [
     description: "Performance-driven advertising optimization to reduce ACOS and scale profitable products.",
     href: "/services/amazon-ppc-management",
   },
+  {
+    tag: "Launch",
+    icon: <Megaphone className="w-6 h-6" />,
+    title: "New Product Launch",
+    description: "Strategic market entry plans focused on visibility, ranking velocity, and early sales.",
+    href: "/services/new-product-launch",
+  },
+  {
+    tag: "Expansion",
+    icon: <Layout className="w-6 h-6" />,
+    title: "E-Commerce Store",
+    description: "Build and scale independent e-commerce stores to own your customer data and margins.",
+    href: "/services/e-commerce-store",
+  },
+];
+
+const publishingServices: Service[] = [
   {
     tag: "Conversion",
     icon: <Search className="w-6 h-6" />,
@@ -51,20 +68,6 @@ const services: Service[] = [
     title: "Brand Store Design",
     description: "Custom digital storefronts that reflect your brand identity and improve discovery.",
     href: "/services/brand-store-design",
-  },
-  {
-    tag: "Launch",
-    icon: <Megaphone className="w-6 h-6" />,
-    title: "New Product Launch",
-    description: "Strategic market entry plans focused on visibility, ranking velocity, and early sales.",
-    href: "/services/new-product-launch",
-  },
-  {
-    tag: "Expansion",
-    icon: <Layout className="w-6 h-6" />,
-    title: "E-Commerce Store",
-    description: "Build and scale independent e-commerce stores to own your customer data and margins.",
-    href: "/services/e-commerce-store",
   },
 ];
 
@@ -147,11 +150,34 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {services.map((service) => (
-            <ServiceCard key={service.title} {...service} />
-          ))}
+        {/* E-Commerce Services */}
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-10">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 font-heading tracking-tight">
+              E-Commerce Services
+            </h3>
+            <div className="h-px bg-gray-100 flex-grow opacity-60" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {ecommerceServices.map((service) => (
+              <ServiceCard key={service.title} {...service} />
+            ))}
+          </div>
+        </div>
+
+        {/* Publishing Services */}
+        <div>
+          <div className="flex items-center gap-4 mb-10">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 font-heading tracking-tight">
+              Publishing Services
+            </h3>
+            <div className="h-px bg-gray-100 flex-grow opacity-60" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {publishingServices.map((service) => (
+              <ServiceCard key={service.title} {...service} />
+            ))}
+          </div>
         </div>
 
         {/* Bottom CTA bar */}

@@ -48,10 +48,10 @@
 
   /* ── Brand color palette ──────────────────────────── */
   /* Base:  #00674F  |  Hover: #007d60  |  Light (on dark): #00a880 */
-  --color-brand:       #00674F;
+  --color-brand: #00674F;
   --color-brand-hover: #007d60;
   --color-brand-light: #00a880;
-  --color-brand-dark:  #004f3c;
+  --color-brand-dark: #004f3c;
 }
 
 :root {
@@ -127,17 +127,29 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight;
   }
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee {
@@ -145,28 +157,59 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes orbit {
-  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
 }
 
 @keyframes orbit-large {
-  from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+  from {
+    transform: rotate(0deg) translateX(180px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(180px) rotate(-360deg);
+  }
 }
 
 @keyframes orbit-reverse {
-  from { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
-  to { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+  from {
+    transform: rotate(360deg) translateX(140px) rotate(-360deg);
+  }
+
+  to {
+    transform: rotate(0deg) translateX(140px) rotate(0deg);
+  }
 }
 
 @keyframes pulse-soft {
-  0%, 100% { transform: scale(1); opacity: 0.1; }
-  50% { transform: scale(1.1); opacity: 0.2; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
 }
 
 .animate-float {
@@ -174,6 +217,25 @@
 }
 
 /* Force all italicized elements and utility classes to be normal, clean, and upright (unlayered to override Tailwind utilities) */
-.italic, em, i, cite, address {
+.italic,
+em,
+i,
+cite,
+address {
   font-style: normal !important;
+}
+
+/* Custom slim scrollbar for dropdown menus */
+.dropdown-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.dropdown-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dropdown-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 103, 79, 0.2);
+  border-radius: 99px;
+}
+.dropdown-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 103, 79, 0.4);
 }

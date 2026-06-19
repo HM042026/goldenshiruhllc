@@ -2,15 +2,18 @@
 import Link from "next/link";
 import { Mail, Phone, ArrowRight, ShieldCheck, Globe } from "lucide-react";
 
-const services = [
+const ecommerceServices = [
   { label: "Account Management", href: "/services/amazon-account-management" },
   { label: "PPC Management", href: "/services/amazon-ppc-management" },
+  { label: "New Product Launch", href: "/services/new-product-launch" },
+  { label: "E-Commerce Store", href: "/services/e-commerce-store" },
+];
+
+const publishingServices = [
   { label: "Listing Optimization", href: "/services/listing-optimization" },
   { label: "A+ / EBC Content", href: "/services/a-plus-ebc-content" },
   { label: "Product Photography", href: "/services/product-photography" },
   { label: "Brand Store Design", href: "/services/brand-store-design" },
-  { label: "New Product Launch", href: "/services/new-product-launch" },
-  { label: "E-Commerce Store", href: "/services/e-commerce-store" },
 ];
 
 const companyLinks = [
@@ -66,10 +69,10 @@ export default function Footer() {
             <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <h4 className="text-white font-bold font-heading text-sm uppercase tracking-[0.2em]">
-                  Our Solutions
+                  E-Commerce
                 </h4>
                 <ul className="space-y-4">
-                  {services.slice(0, 4).map((s) => (
+                  {ecommerceServices.map((s) => (
                     <li key={s.label}>
                       <Link
                         href={s.href}
@@ -83,11 +86,11 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="space-y-6">
-                <h4 className="text-white font-bold font-heading text-sm uppercase tracking-[0.2em] opacity-0 sm:opacity-100">
-                  _
+                <h4 className="text-white font-bold font-heading text-sm uppercase tracking-[0.2em]">
+                  Publishing
                 </h4>
                 <ul className="space-y-4">
-                  {services.slice(4).map((s) => (
+                  {publishingServices.map((s) => (
                     <li key={s.label}>
                       <Link
                         href={s.href}
